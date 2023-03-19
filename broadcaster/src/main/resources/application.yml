@@ -1,0 +1,21 @@
+server:
+   port: 8090
+broadcaster:
+   kafka:
+      topic: content-timestamp-topic
+   websocket:
+      app-destination-prefix: /app
+      topic-destination-prefix: /topic
+      topic-name: /broadcast
+      endpoint: /broadcaster-websocket-endpoint
+spring:
+   kafka:
+      bootstrap-servers: host.docker.internal:9092
+      consumer:
+         key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+         value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+         properties:
+            spring:
+               json:
+                  trusted:
+                     packages: com.falcon.broadcaster
